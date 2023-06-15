@@ -22,6 +22,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private UsuarioRepository repository;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println("Chegou no filtro");
         String token = getToken(request);
 
 
@@ -30,6 +31,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             var usuario = repository.findByLogin(subject);
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            System.out.println("Usuario autenticado" + subject);
         }
 
         filterChain.doFilter(request, response);
@@ -38,8 +40,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     private String getToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
-        if(token != null && token.startsWith("Bearer ")){
-            return token.substring(7);
+        if(token != null){
+            return token.replace("Bearer ", "");
         }
 
         return null;
