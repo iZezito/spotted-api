@@ -6,20 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Comentario {
-    @NotBlank
-    @Column(columnDefinition = "TEXT")
-    String texto;
+public class Resposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Column(columnDefinition = "TEXT")
+    private String texto;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Resposta> respostas;
 }

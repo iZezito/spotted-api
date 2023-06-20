@@ -14,10 +14,6 @@ public class ComentarioController extends GenericRestController<Comentario> {
     @PostMapping("/{id}")
     public void inserirComment(@PathVariable Long id, @RequestBody Comentario comentario){
         comentarioService.insertComentario(id, comentario);
-
-
-
-
     }
 
 }
