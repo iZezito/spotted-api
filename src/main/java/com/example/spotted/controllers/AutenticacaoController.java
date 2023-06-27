@@ -26,10 +26,10 @@ public class AutenticacaoController {
         try {
             var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
             var authentication = manager.authenticate(authenticationToken);
-
             var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+            var usuario = tokenService.getSubject(tokenJWT);
 
-            return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+            return ResponseEntity.ok(new DadosTokenJWT(tokenJWT, usuario));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

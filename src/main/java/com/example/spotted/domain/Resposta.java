@@ -14,6 +14,9 @@ public class Resposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    private String autor;
     @NotBlank
     @Column(columnDefinition = "TEXT")
     private String texto;

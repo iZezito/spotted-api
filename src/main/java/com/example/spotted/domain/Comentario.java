@@ -20,6 +20,9 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    private String autor;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas;
 }

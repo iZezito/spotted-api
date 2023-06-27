@@ -1,4 +1,4 @@
 package com.example.spotted.security;
 
-public record DadosTokenJWT(String token) {
+public record DadosTokenJWT(String token, String subject) {
 }
