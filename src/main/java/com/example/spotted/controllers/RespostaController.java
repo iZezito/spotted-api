@@ -19,4 +19,10 @@ public class RespostaController extends GenericRestController<Resposta> {
         respostaService.insertResposta(id, resposta);
         return ResponseEntity.ok(resposta);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<String> updateResposta(@PathVariable Long id, @RequestBody Resposta resposta){
+        respostaService.updateResposta(id, resposta.getTexto());
+        return ResponseEntity.ok(resposta.getTexto());
+    }
 }

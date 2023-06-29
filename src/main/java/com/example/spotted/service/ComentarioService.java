@@ -16,4 +16,10 @@ public class ComentarioService extends GenericService<Comentario>{
         noticia.getComentarios().add(comentario);
         noticiaService.update(noticia);
     }
+
+    public void updateComentario(Long id, String comentario) {
+        Comentario comentarioAtual = getById(id);
+        comentarioAtual.setTexto(comentario);
+        update(comentarioAtual);
+    }
 }

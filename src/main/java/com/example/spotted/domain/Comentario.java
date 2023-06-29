@@ -15,7 +15,7 @@ import java.util.List;
 public class Comentario {
     @NotBlank
     @Column(columnDefinition = "TEXT")
-    String texto;
+    private String texto;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

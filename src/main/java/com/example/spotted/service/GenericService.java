@@ -25,7 +25,7 @@ public class GenericService<T>{
     }
 
     public void update(T t){
-        repository.save(t);
+        repository.saveAndFlush(t);
     }
 
     public T getById(Long id){

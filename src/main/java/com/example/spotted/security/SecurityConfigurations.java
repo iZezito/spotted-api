@@ -41,7 +41,7 @@ public class SecurityConfigurations {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Permitir todas as origens
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Permitir todos os métodos
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH")); // Permitir todos os métodos
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Permitir cabeçalhos específicos
         configuration.setAllowCredentials(true); // Permitir envio de credenciais (por exemplo, cookies)
 

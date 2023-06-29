@@ -15,4 +15,10 @@ public class RespostaService extends GenericService<Resposta>{
         comentario.getRespostas().add(resposta);
         comentarioService.update(comentario);
     }
+
+    public void updateResposta(Long id, String texto) {
+        Resposta respostaAtual = getById(id);
+        respostaAtual.setTexto(texto);
+        update(respostaAtual);
+    }
 }
