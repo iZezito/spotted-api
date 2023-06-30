@@ -2,11 +2,14 @@ package com.example.spotted.service;
 
 import com.example.spotted.domain.Comentario;
 import com.example.spotted.domain.Noticia;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ComentarioService extends GenericService<Comentario>{
+    @Autowired
+    private EntityManager entityManager;
     @Autowired
     private NoticiaService noticiaService;
 
@@ -21,5 +24,14 @@ public class ComentarioService extends GenericService<Comentario>{
         Comentario comentarioAtual = getById(id);
         comentarioAtual.setTexto(comentario);
         update(comentarioAtual);
+    }
+
+
+    public void delete(Long id, Long idNoticia) {
+        Noticia noticia = noticiaService.getById(idNoticia);
+        Comentario comentario = getById(id);
+        noticia.getComentarios().remove(comentario);
+        noticiaService.update(noticia);
+        super.delete(comentario);
     }
 }

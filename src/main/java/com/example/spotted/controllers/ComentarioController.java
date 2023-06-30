@@ -13,8 +13,9 @@ public class ComentarioController extends GenericRestController<Comentario> {
     private ComentarioService comentarioService;
 
     @PostMapping("/{id}")
-    public void inserirComment(@PathVariable Long id, @RequestBody Comentario comentario){
+    public ResponseEntity<Comentario> inserirComment(@PathVariable Long id, @RequestBody Comentario comentario){
         comentarioService.insertComentario(id, comentario);
+        return ResponseEntity.ok(comentario);
     }
 
     @PatchMapping("/{id}")
@@ -23,6 +24,16 @@ public class ComentarioController extends GenericRestController<Comentario> {
         System.out.println(comentario);
         comentarioService.updateComentario(id, comentario.getTexto());
         return ResponseEntity.ok(comentario.getTexto());
+    }
+
+    @DeleteMapping("/{id}/{idNoticia}")
+    public ResponseEntity<?> deleteComment(@PathVariable Long id, @PathVariable Long idNoticia) {
+        Comentario comentario = comentarioService.getById(id);
+        if (comentario == null) {
+            return ResponseEntity.notFound().build();
+        }
+        comentarioService.delete(id, idNoticia);
+        return ResponseEntity.ok().build();
     }
 
 }

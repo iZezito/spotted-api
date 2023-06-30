@@ -25,4 +25,14 @@ public class RespostaController extends GenericRestController<Resposta> {
         respostaService.updateResposta(id, resposta.getTexto());
         return ResponseEntity.ok(resposta.getTexto());
     }
+
+    @DeleteMapping("/{id}/{idComentario}")
+    public ResponseEntity<?> deleteResposta(@PathVariable Long id, @PathVariable Long idComentario) {
+        Resposta resposta = respostaService.getById(id);
+        if (resposta == null) {
+            return ResponseEntity.notFound().build();
+        }
+        respostaService.delete(id, idComentario);
+        return ResponseEntity.ok().build();
+    }
 }

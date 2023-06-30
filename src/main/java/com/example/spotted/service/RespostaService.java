@@ -21,4 +21,12 @@ public class RespostaService extends GenericService<Resposta>{
         respostaAtual.setTexto(texto);
         update(respostaAtual);
     }
+
+    public void delete(Long id, Long idComentario) {
+        Comentario comentario = comentarioService.getById(idComentario);
+        Resposta resposta = getById(id);
+        comentario.getRespostas().remove(resposta);
+        comentarioService.update(comentario);
+        super.delete(resposta);
+    }
 }
