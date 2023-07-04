@@ -10,10 +10,11 @@ public class RespostaService extends GenericService<Resposta>{
 
     @Autowired
     private ComentarioService comentarioService;
-    public void insertResposta(Long idComentario, Resposta resposta){
+    public Resposta insertResposta(Long idComentario, Resposta resposta){
         Comentario comentario = comentarioService.getById(idComentario);
         comentario.getRespostas().add(resposta);
         comentarioService.update(comentario);
+        return comentarioService.getById(idComentario).getRespostas().get(comentario.getRespostas().size()-1);
     }
 
     public void updateResposta(Long id, String texto) {

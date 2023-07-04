@@ -14,8 +14,8 @@ public class ComentarioController extends GenericRestController<Comentario> {
 
     @PostMapping("/{id}")
     public ResponseEntity<Comentario> inserirComment(@PathVariable Long id, @RequestBody Comentario comentario){
-        comentarioService.insertComentario(id, comentario);
-        return ResponseEntity.ok(comentario);
+        Comentario comentarioInserido = comentarioService.insertComentario(id, comentario);
+        return ResponseEntity.ok(comentarioInserido);
     }
 
     @PatchMapping("/{id}")

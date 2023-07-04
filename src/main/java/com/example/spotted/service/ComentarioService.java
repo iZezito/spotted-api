@@ -9,15 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ComentarioService extends GenericService<Comentario>{
     @Autowired
-    private EntityManager entityManager;
-    @Autowired
     private NoticiaService noticiaService;
 
 
-    public void insertComentario(Long idNoticia, Comentario comentario){
+    public Comentario insertComentario(Long idNoticia, Comentario comentario){
         Noticia noticia = noticiaService.getById(idNoticia);
         noticia.getComentarios().add(comentario);
         noticiaService.update(noticia);
+        return noticiaService.getById(idNoticia).getComentarios().get(noticia.getComentarios().size()-1);
     }
 
     public void updateComentario(Long id, String comentario) {

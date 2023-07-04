@@ -21,8 +21,8 @@ public abstract class GenericRestController<T> {
         return t;
     }
 
-    @GetMapping(path = {"/{id}"})
-    public ResponseEntity<T> findById(Long id) {
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<T> findById(@PathVariable Long id) {
         T t = service.getById(id);
         if(t == null){
             return ResponseEntity.notFound().build();

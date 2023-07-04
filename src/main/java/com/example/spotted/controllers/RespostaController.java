@@ -16,8 +16,8 @@ public class RespostaController extends GenericRestController<Resposta> {
 
     @PostMapping("/{id}")
     public ResponseEntity<Resposta> inserirResposta(@PathVariable Long id, @RequestBody Resposta resposta){
-        respostaService.insertResposta(id, resposta);
-        return ResponseEntity.ok(resposta);
+        Resposta respostaInserida =  respostaService.insertResposta(id, resposta);
+        return ResponseEntity.ok(respostaInserida);
     }
 
     @PatchMapping("/{id}")
