@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ComentarioService extends GenericService<Comentario>{
     @Autowired
@@ -32,5 +34,10 @@ public class ComentarioService extends GenericService<Comentario>{
         noticia.getComentarios().remove(comentario);
         noticiaService.update(noticia);
         super.delete(comentario);
+    }
+
+    public List<Comentario> getComentarios(Long idNoticia) {
+        Noticia noticia = noticiaService.getById(idNoticia);
+        return noticia.getComentarios();
     }
 }

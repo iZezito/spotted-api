@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class GenericService<T>{
+public abstract class GenericService<T>{
     @Autowired
     private GenericRepository<T> repository;
 

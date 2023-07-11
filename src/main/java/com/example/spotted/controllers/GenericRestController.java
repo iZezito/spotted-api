@@ -1,5 +1,6 @@
 package com.example.spotted.controllers;
 
+import com.example.spotted.domain.Comentario;
 import com.example.spotted.domain.Noticia;
 import com.example.spotted.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,4 @@ public abstract class GenericRestController<T> {
         service.delete(t);
         return ResponseEntity.ok().build();
     }
-
 }

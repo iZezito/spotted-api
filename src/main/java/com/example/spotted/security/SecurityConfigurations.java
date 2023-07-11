@@ -31,7 +31,8 @@ public class SecurityConfigurations {
         return http.csrf().disable().cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/login", "/usuarios", "/usuarios/matricula").permitAll()
+                .requestMatchers(HttpMethod.GET, "/usuarios/login/{login}").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

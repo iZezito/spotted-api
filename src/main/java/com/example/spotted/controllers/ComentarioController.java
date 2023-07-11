@@ -19,7 +19,7 @@ public class ComentarioController extends GenericRestController<Comentario> {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<String> updateComment(@PathVariable Long id, @RequestBody Comentario comentario){
+    public ResponseEntity<String> updateComment(@PathVariable Long id, @RequestBody Comentario comentario) {
         System.out.println("Entrou no patch");
         System.out.println(comentario);
         comentarioService.updateComentario(id, comentario.getTexto());

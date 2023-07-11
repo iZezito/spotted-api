@@ -30,8 +30,8 @@ public class SpottedApplication {
     public void initAlmocos() {
 
         List<Usuario> users = Stream.of(
-                new Usuario(1L, "admin", encoder().encode("admin")),
-                new Usuario(2L, "user1", encoder().encode("user1"))
+                new Usuario(1L, "20220029470", "erick", encoder().encode("1234567")),
+                new Usuario(2L, "20210017967", "emerson", encoder().encode("1234567"))
 
         ).collect(Collectors.toList());
 
