@@ -21,7 +21,6 @@ public class Noticia {
     //column without size limit
     @Column(columnDefinition = "TEXT")
     private String descricao;
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comentario> comentarios;
 

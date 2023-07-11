@@ -33,10 +33,11 @@ public class UsuarioController{
             PDFTextStripper textStripper = new PDFTextStripper();
             String text = textStripper.getText(document);
             document.close();
-            String regex = "sob o número (\\d+)";
+            String regex = "sob o número\\s*(\\d+)";
 
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(text);
+            System.out.println(text);
 
             if (matcher.find()) {
                 String matricula = matcher.group(1);
@@ -45,7 +46,7 @@ public class UsuarioController{
                 if(usuario != null){
                     return "Usuário já cadastrado";
                 }else{
-                    return "Matrícula válida";
+                    return "Matrícula válida/"+matricula;
                 }
             } else {
                 System.out.println("Número não encontrado.");
