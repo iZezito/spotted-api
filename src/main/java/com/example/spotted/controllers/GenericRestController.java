@@ -42,7 +42,6 @@ public abstract class GenericRestController<T> {
 
     @PutMapping()
     public ResponseEntity<T> update(@RequestBody T t) {
-
         service.update(t);
         return ResponseEntity.ok().body(t);
     }

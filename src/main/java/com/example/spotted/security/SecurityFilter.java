@@ -25,14 +25,19 @@ public class SecurityFilter extends OncePerRequestFilter {
         System.out.println("Chegou no filtro");
         String token = getToken(request);
 
+          // caso o token seja inválido ou expirado, retorne 401
 
         if(token != null){
             var subject = TokenService.getSubject(token);
+            if(subject == null) {
+                response.setStatus(401);
+                return;
+            }
             var usuario = repository.findByLogin(subject);
-            var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("Usuario autenticado" + subject);
+            var auth = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
+
 
         filterChain.doFilter(request, response);
     }

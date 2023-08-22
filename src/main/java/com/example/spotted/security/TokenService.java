@@ -26,7 +26,9 @@ public class TokenService {
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);
         } catch (JWTCreationException exception){
-            throw new RuntimeException("erro ao gerar token jwt", exception);
+            // throw new RuntimeException("erro ao gerar token jwt", exception);
+            System.out.println("erro ao gerar token jwt");
+            return null;
         }
     }
 
@@ -38,8 +40,12 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         } catch (Exception exception) {
-            throw new RuntimeException("erro ao obter subject do token jwt", exception);
+            //throw new RuntimeException("erro ao obter subject do token jwt", exception);
+            System.out.println("erro ao obter subject do token jwt");
+            return null;
+
         }
+
     }
 
     private Instant dataExpiracao() {
